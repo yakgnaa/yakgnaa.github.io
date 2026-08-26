@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact VerIQ</title>
+  <meta name="description" content="Contact VerIQ support for help with the VerIQ AI Plant Identifier app.">
+  <link rel="canonical" href="https://yakgnaa.github.io/contact.html">
+  <link rel="icon" href="veriq-icon.png">
+  <link rel="apple-touch-icon" href="veriq-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrapper nav">
+    <a class="brand" href="index.html"><img src="veriq-icon.png" alt="VerIQ app icon"><strong class="brand-title">VerIQ - AI Plant Identifier</strong></a>
+    <nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+  </div>
+</header>
+<main class="wrapper content">
+  <div class="eyebrow"><span></span> We’re here to help</div>
+  <h1>Contact VerIQ</h1>
+  <p class="lead">For app support, account questions, credits, or feedback, contact us at:</p>
+  <section class="contact-card" aria-label="VerIQ contact information">
+    <div><div class="small">Support email</div><a class="contact-email" href="mailto:yakgna@gmail.com?subject=VerIQ%20Support">yakgna@gmail.com</a></div>
+    <div class="contact-actions"><button class="button primary" type="button" id="copy-email">Copy email</button><a class="button secondary" href="mailto:yakgna@gmail.com?subject=VerIQ%20Support">Open email app</a></div>
+    <p class="small" id="copy-status" role="status">When requesting support, include your device, app version, and a screenshot when possible. Please do not include sensitive personal information.</p>
+  </section>
+</main>
+<footer><div class="wrapper footer-row"><div>© 2026 VerIQ. All rights reserved.</div><div class="footer-links"><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="https://yakgnaa.github.io/contact.html">Contact</a></div></div></footer>
+<script>
+document.getElementById('copy-email').addEventListener('click',async function(){const status=document.getElementById('copy-status');try{await navigator.clipboard.writeText('yakgna@gmail.com');status.textContent='Email address copied: yakgna@gmail.com';}catch(_){status.textContent='Please copy this email address: yakgna@gmail.com';}});
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.contact-card {
+  margin-top: 34px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgba(23, 58, 37, .08);
+}
+.contact-email {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: clamp(1.5rem, 4vw, 2.15rem);
+  font-weight: 850;
+  color: var(--forest);
+  text-decoration: none;
+}
+.contact-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px 0 20px;
+}
+.contact-actions .button { font: inherit; cursor: pointer; }
