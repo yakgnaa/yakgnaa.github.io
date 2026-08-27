@@ -22,19 +22,56 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "VerIQ – AI Plant Identifier",
-    "alternateName": "VerIQ AI Plant Doctor",
-    "url": "https://yakgnaa.github.io/",
-    "image": "https://yakgnaa.github.io/veriq-icon.png",
-    "applicationCategory": "LifestyleApplication",
-    "operatingSystem": "iOS, iPadOS, Android",
-    "description": "An AI-powered plant identifier and plant doctor that provides diagnosis, care guidance, reminders, and garden tracking.",
-    "downloadUrl": [
-      "https://apps.apple.com/app/id6786474071",
-      "https://play.google.com/store/apps/details?id=com.veriq.app"
-    ],
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://yakgnaa.github.io/#website",
+        "url": "https://yakgnaa.github.io/",
+        "name": "VerIQ – AI Plant Identifier",
+        "description": "The official website for VerIQ, available on iPhone, iPad, and Android.",
+        "publisher": {"@id": "https://yakgnaa.github.io/#publisher"}
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://yakgnaa.github.io/#publisher",
+        "name": "VerIQ",
+        "url": "https://yakgnaa.github.io/",
+        "logo": "https://yakgnaa.github.io/veriq-icon.png",
+        "sameAs": [
+          "https://apps.apple.com/app/id6786474071",
+          "https://play.google.com/store/apps/details?id=com.veriq.app"
+        ]
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://yakgnaa.github.io/#ios-app",
+        "name": "VerIQ – AI Plant Identifier",
+        "alternateName": "VerIQ AI Plant Doctor",
+        "url": "https://apps.apple.com/app/id6786474071",
+        "downloadUrl": "https://apps.apple.com/app/id6786474071",
+        "image": "https://yakgnaa.github.io/veriq-icon.png",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "iOS, iPadOS",
+        "description": "The official VerIQ plant identification, diagnosis, and care app for iPhone and iPad.",
+        "publisher": {"@id": "https://yakgnaa.github.io/#publisher"},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://yakgnaa.github.io/#android-app",
+        "name": "VerIQ – AI Plant Identifier",
+        "alternateName": "VerIQ AI Plant Doctor",
+        "url": "https://play.google.com/store/apps/details?id=com.veriq.app",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=com.veriq.app",
+        "installUrl": "https://play.google.com/store/apps/details?id=com.veriq.app",
+        "image": "https://yakgnaa.github.io/veriq-icon.png",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Android",
+        "description": "The official VerIQ plant identification, diagnosis, and care app for Android. Android package: com.veriq.app.",
+        "publisher": {"@id": "https://yakgnaa.github.io/#publisher"},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+      }
+    ]
   }
   </script>
 </head>
@@ -91,6 +128,29 @@
     </div>
   </section>
 
+  <section class="section" id="official-downloads">
+    <div class="wrapper">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span></span> Official app links</div><h2>VerIQ is available on<br>iPhone and Android.</h2></div>
+        <p>This is the official download page for VerIQ – AI Plant Identifier. Choose your device below to open the verified VerIQ listing in its app store.</p>
+      </div>
+      <div class="grid official-store-grid">
+        <article class="card">
+          <div class="icon">🍎</div>
+          <h3>VerIQ for iPhone &amp; iPad</h3>
+          <p>Download the official iOS and iPadOS app from Apple’s App Store.</p>
+          <a class="official-store-link" href="https://apps.apple.com/app/id6786474071" target="_blank" rel="noopener">Open VerIQ on the App Store ↗</a>
+        </article>
+        <article class="card">
+          <div class="icon">▶</div>
+          <h3>VerIQ for Android</h3>
+          <p>Download the official Android app, package <strong>com.veriq.app</strong>, directly from Google Play.</p>
+          <a class="official-store-link" href="https://play.google.com/store/apps/details?id=com.veriq.app" target="_blank" rel="noopener">Open VerIQ on Google Play ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="features">
     <div class="wrapper">
       <div class="section-heading">
@@ -112,6 +172,22 @@
     <div class="wrapper cta-panel">
       <div><div class="eyebrow light"><span></span> Available now</div><h2>Give every plant a better chance.</h2><p>Download VerIQ free on iPhone or Android and start with 50 credits.</p></div>
       <div class="cta-links"><a href="https://apps.apple.com/app/id6786474071" target="_blank" rel="noopener">Download for iPhone ↗</a><a href="https://play.google.com/store/apps/details?id=com.veriq.app" target="_blank" rel="noopener">Download for Android ↗</a></div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrapper">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span></span> Flexible access</div><h2>Start free.<br>Choose what fits.</h2></div>
+        <p>VerIQ is free to download and includes 50 introductory credits. Continue with one-time credit packs or an auto-renewing VerIQ Plus subscription.</p>
+      </div>
+      <div class="grid pricing-grid">
+        <article class="card"><div class="icon">🌱</div><h3>Free Download</h3><p>Includes 50 introductory credits when you install VerIQ.</p></article>
+        <article class="card"><div class="icon">∞</div><h3>VerIQ Plus Monthly</h3><p><strong>$3.99 per month</strong> for the monthly auto-renewing subscription.</p></article>
+        <article class="card"><div class="icon">🌿</div><h3>VerIQ Plus Annual</h3><p><strong>$24.99 per year</strong> for the annual auto-renewing subscription.</p></article>
+        <article class="card"><div class="icon">🎟️</div><h3>One-Time Credit Packs</h3><p>Pay-as-you-go credit packs are also available without starting a subscription.</p></article>
+      </div>
+      <p class="pricing-note">Prices shown are U.S. prices and may vary by country, currency, taxes, and app-store pricing.</p>
     </div>
   </section>
 </main>
