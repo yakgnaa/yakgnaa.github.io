@@ -10,8 +10,13 @@
   <link rel="apple-touch-icon" href="veriq-icon.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .scroll-hint{display:flex;align-items:center;gap:7px;margin:10px 0 8px;font-size:.78rem;font-weight:800;color:var(--purple);letter-spacing:.02em}
+    .scroll-hint{display:inline-flex;align-items:center;gap:7px;margin:10px 0 8px;padding:6px 13px;border-radius:999px;background:var(--lavender);color:var(--purple);font-size:.78rem;font-weight:800;letter-spacing:.02em}
+    .scroll-hint .arrow-glyph{display:inline-block;animation:hint-nudge 1.3s ease-in-out 3}
+    @keyframes hint-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+    @media (prefers-reduced-motion:reduce){.scroll-hint .arrow-glyph{animation:none}}
     .compare-table-wrap{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:20px;box-shadow:0 9px 32px rgba(23,58,37,.065);background:var(--surface);margin-top:8px}
+    .scroll-arrow{position:absolute;top:50%;right:10px;transform:translateY(-50%);width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--forest);font-size:1.1rem;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 20px rgba(23,58,37,.18);z-index:3;transition:opacity .15s ease;padding:0}
+    .scroll-arrow.is-hidden{opacity:0;pointer-events:none}
     table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.94rem}
     table.compare thead th{text-align:left;font-weight:800;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:16px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
     table.compare tbody td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4;color:#34443a}
@@ -75,7 +80,7 @@
   <div class="notice"><strong>On sourcing:</strong> every row below, including VerIQ's, is built from that app's own official App Store listing (features, pricing, and rating counts as shown there), not from a third party's summary of it. We picked these four specifically because their App Store rating counts back up "market leader": PictureThis (1.1M ratings), PlantIn (229K), Planta (114K), and Pl@ntNet (7K on iOS, but the most-cited free/citizen-science option and the one independent listicles mention first). Smaller, newer apps were left out of this table on purpose — a handful of App Store rating counts under 20K don't support calling something a market leader, however well an app ranks itself in its own blog post.</div>
 
   <h2>Four market leaders, plus VerIQ</h2>
-  <p class="scroll-hint" id="compare-scroll-hint">↔ This table has 15 columns — scroll sideways to see them all (the app name stays put)</p>
+  <p class="scroll-hint" id="compare-scroll-hint"><span class="arrow-glyph">↔</span> This table has 15 columns — scroll sideways, or tap the arrow, to see them all (the app name stays put)</p>
   <div class="compare-table-wrap" id="compare-table-wrap">
     <table class="compare">
       <thead>
@@ -186,6 +191,7 @@
       </tbody>
     </table>
     <div class="scroll-fade" id="compare-scroll-fade" aria-hidden="true"></div>
+    <button type="button" class="scroll-arrow" id="compare-scroll-arrow" aria-label="Scroll table right to see more columns">›</button>
   </div>
   <p class="table-foot-note">* Species-count and diagnosis claims as stated on each app's own App Store listing or documentation, not measured on a common test set. &nbsp; ** Too new for independent benchmarking; verified on-device only so far. "Not stated" means the app's own official listing didn't mention it either way — it may still exist and just not be advertised there.</p>
   <p class="table-foot-note">Light meters and basic reminders turn out to be common across this set; VerIQ's real edges are the plant-specific weather thresholds, AI (not human-staffed) voice Q&amp;A, and travel-specific task handling — not the mere presence of a reminder or meter feature.</p>
@@ -241,16 +247,32 @@
   var wrap = document.getElementById('compare-table-wrap');
   var fade = document.getElementById('compare-scroll-fade');
   var hint = document.getElementById('compare-scroll-hint');
+  var arrow = document.getElementById('compare-scroll-arrow');
   if(!wrap || !fade) return;
   function update(){
     var scrollable = wrap.scrollWidth > wrap.clientWidth + 2;
     var atEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 2;
     fade.classList.toggle('is-hidden', !scrollable || atEnd);
     if(hint) hint.style.display = scrollable ? '' : 'none';
+    if(arrow) arrow.classList.toggle('is-hidden', !scrollable || atEnd);
   }
   wrap.addEventListener('scroll', update, {passive:true});
   window.addEventListener('resize', update);
+  if(arrow){
+    arrow.addEventListener('click', function(){
+      wrap.scrollBy({left: Math.round(wrap.clientWidth * 0.6), behavior:'smooth'});
+    });
+  }
   update();
+  // One-time nudge so a still, un-annotated table doesn't read as "that's all of it" —
+  // scrolls a few pixels right and back once content loads, skipped if reduced motion is on.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion && wrap.scrollWidth > wrap.clientWidth + 2){
+    setTimeout(function(){
+      wrap.scrollTo({left: 46, behavior:'smooth'});
+      setTimeout(function(){ wrap.scrollTo({left: 0, behavior:'smooth'}); }, 550);
+    }, 700);
+  }
 })();
 </script>
 </body>
