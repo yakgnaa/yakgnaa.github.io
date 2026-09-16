@@ -10,13 +10,19 @@
   <link rel="apple-touch-icon" href="veriq-icon.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .compare-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:20px;box-shadow:0 9px 32px rgba(23,58,37,.065);background:var(--surface);margin-top:8px}
+    .scroll-hint{display:flex;align-items:center;gap:7px;margin:10px 0 8px;font-size:.78rem;font-weight:800;color:var(--purple);letter-spacing:.02em}
+    .compare-table-wrap{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:20px;box-shadow:0 9px 32px rgba(23,58,37,.065);background:var(--surface);margin-top:8px}
     table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.94rem}
     table.compare thead th{text-align:left;font-weight:800;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:16px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
     table.compare tbody td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4;color:#34443a}
     table.compare tbody tr:last-child td{border-bottom:0}
     table.compare tbody tr.veriq-row{background:var(--lavender)}
     table.compare td.app-cell{font-weight:800;color:var(--forest);white-space:nowrap}
+    table.compare thead th:first-child,table.compare td.app-cell{position:sticky;left:0;background:#fbfdfb;z-index:1}
+    table.compare thead th:first-child{z-index:2}
+    table.compare tbody tr.veriq-row td.app-cell{background:var(--lavender)}
+    .compare-table-wrap .scroll-fade{position:absolute;top:0;right:0;bottom:0;width:34px;background:linear-gradient(to right,rgba(251,253,251,0),#fbfdfb 78%);pointer-events:none;border-radius:0 20px 20px 0;transition:opacity .15s ease;opacity:1}
+    .compare-table-wrap .scroll-fade.is-hidden{opacity:0}
     .this-app-badge{display:inline-block;margin-left:8px;font-size:.65rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--purple);background:rgba(108,53,212,.12);border-radius:999px;padding:3px 9px;vertical-align:middle}
     .tag-yes{color:var(--green);font-weight:750}
     .tag-partial{color:#a06a06;font-weight:750}
@@ -69,7 +75,8 @@
   <div class="notice"><strong>On sourcing:</strong> every row below, including VerIQ's, is built from that app's own official App Store listing (features, pricing, and rating counts as shown there), not from a third party's summary of it. We picked these four specifically because their App Store rating counts back up "market leader": PictureThis (1.1M ratings), PlantIn (229K), Planta (114K), and Pl@ntNet (7K on iOS, but the most-cited free/citizen-science option and the one independent listicles mention first). Smaller, newer apps were left out of this table on purpose — a handful of App Store rating counts under 20K don't support calling something a market leader, however well an app ranks itself in its own blog post.</div>
 
   <h2>Four market leaders, plus VerIQ</h2>
-  <div class="compare-table-wrap">
+  <p class="scroll-hint" id="compare-scroll-hint">↔ This table has 15 columns — scroll sideways to see them all (the app name stays put)</p>
+  <div class="compare-table-wrap" id="compare-table-wrap">
     <table class="compare">
       <thead>
         <tr>
@@ -178,6 +185,7 @@
         </tr>
       </tbody>
     </table>
+    <div class="scroll-fade" id="compare-scroll-fade" aria-hidden="true"></div>
   </div>
   <p class="table-foot-note">* Species-count and diagnosis claims as stated on each app's own App Store listing or documentation, not measured on a common test set. &nbsp; ** Too new for independent benchmarking; verified on-device only so far. "Not stated" means the app's own official listing didn't mention it either way — it may still exist and just not be advertised there.</p>
   <p class="table-foot-note">Light meters and basic reminders turn out to be common across this set; VerIQ's real edges are the plant-specific weather thresholds, AI (not human-staffed) voice Q&amp;A, and travel-specific task handling — not the mere presence of a reminder or meter feature.</p>
@@ -228,5 +236,22 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var wrap = document.getElementById('compare-table-wrap');
+  var fade = document.getElementById('compare-scroll-fade');
+  var hint = document.getElementById('compare-scroll-hint');
+  if(!wrap || !fade) return;
+  function update(){
+    var scrollable = wrap.scrollWidth > wrap.clientWidth + 2;
+    var atEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 2;
+    fade.classList.toggle('is-hidden', !scrollable || atEnd);
+    if(hint) hint.style.display = scrollable ? '' : 'none';
+  }
+  wrap.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
 </body>
 </html>
